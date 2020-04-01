@@ -116,11 +116,11 @@
         <IncludeAndroid_Splash>False</IncludeAndroid_Splash>
         <AUP_NFC>true</AUP_NFC>
         <AUP_NFC_TRANSACTION_EVENT>true</AUP_NFC_TRANSACTION_EVENT>
-        <BT_BuildType>AppStore</BT_BuildType>
         <PF_KeyStore>C:\Marcos\Gertec\JKS\Development_MarcosPSaporetti_CustomerAPP.keystore</PF_KeyStore>
-        <PF_KeyStorePass>850B47CC5F81078FCF7DE53AA4417BAEE443084F7EA1EC889F297762D816A8BDA5E55D08E31B1C3CC1FB5752FAC7C331BAF7365004232280162B458DE5AE22C0C90AF35CD51DFA96BFD6AF3F07501D5992423E071DBB0928E3DE16FF442578D8659D9A84BEA3837D00E277BB62C4571938D267BC57F19CE0298A27B33AE8F238</PF_KeyStorePass>
+        <PF_KeyStorePass>850B47CC5F81078FCF7DE53AA4417BAEE443084F7EA1EC889F297762D816A8BDA5E55D087F4BE24C8770C8E40A0EC33BBAE43649044B228816714592E5A622CAC958F30FD517FAC4BFB4AF1107031D01925B3E6A1DD7096BE3ED16A0447A78CD658C9AB622ED7D4E4627E8239257571938D267BC57F19CE0298A27B33AE8F238</PF_KeyStorePass>
         <PF_AliasKey>developmentmarcospsaporetti_customerapp</PF_AliasKey>
-        <PF_AliasKeyPass>850B47CC5F81078FCF7DE53AA4417BAEE443084F7EA1EC889F297762D816A8BDDB06A389E3001C4DC1B85774FAD1C339BAFD36020437228116714592E5A6228DC953F307D56AFAE2BFAAAF1007411D1B92433E551DCB0925E3F016B44439788F1B7C645ABEA3837D00E277BB62C4571938D267BC57F19CE0298A27B33AE8F238</PF_AliasKeyPass>
+        <PF_AliasKeyPass>850B47CC5F81078FCF7DE53AA4417BAEE443084F7EA1EC8897E40FA78E273CF6DB5EA3DEE3551C63C1A4572EFACFC36ABAB3361C046522D316204584E58822A2C958F35CD507FA8FBFBAAF0007301D44921D3E131DF90939EB236E791211ECEA1B7C645ABEA3837D00E277BB62C4571938D267BC57F19CE0298A27B33AE8F238</PF_AliasKeyPass>
+        <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Gertec One Framework;versionCode=1;versionName=1.0.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
@@ -229,7 +229,6 @@
         </DCCReference>
         <DCCReference Include="Imports NFC\Androidapi.JNI.Nfc.pas"/>
         <DCCReference Include="Imports NFC\Androidapi.JNI.Nfc.Tech.pas"/>
-        <DCCReference Include="G700Interface.pas"/>
         <DCCReference Include="G800Interface.pas"/>
         <DCCReference Include="GEDIPrinter.pas"/>
         <DCCReference Include="Impressao.pas">
@@ -297,9 +296,26 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="Android\Debug\libGertecOne.so" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Android">
+                        <RemoteName>libGertecOne.so</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="$(BDS)\lib\android\release\mips\libnative-activity.so" Configuration="Debug" Class="AndroidLibnativeMipsFile">
                     <Platform Name="Android">
                         <RemoteName>libBarCode.so</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
+                    <Platform Name="iOSSimulator">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_SplashImage_960x720.png" Configuration="Debug" Class="Android_SplashImage960">
+                    <Platform Name="Android">
+                        <RemoteName>splash_image.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -320,26 +336,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_SplashImage_960x720.png" Configuration="Debug" Class="Android_SplashImage960">
-                    <Platform Name="Android">
-                        <RemoteName>splash_image.png</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Android\Debug\libGertecOne.so" Configuration="Debug" Class="ProjectOutput">
-                    <Platform Name="Android">
-                        <RemoteName>libGertecOne.so</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_SplashImage_426x320.png" Configuration="Debug" Class="Android_SplashImage426">
                     <Platform Name="Android">
                         <RemoteName>splash_image.png</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
-                    <Platform Name="iOSSimulator">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

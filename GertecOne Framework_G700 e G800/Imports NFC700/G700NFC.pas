@@ -47,7 +47,6 @@ TG700NFC = class
 
   private
     var
-      mensagemTela : TLabel;
       aTask : ITask;
       iCL : JICL;
       PollingInfo : JGEDI_CL_st_ISO_PollingInfo;
@@ -58,6 +57,9 @@ TG700NFC = class
 
       lReadIdCartao : Boolean;
       lReadCartao   : Boolean;
+
+      CardId,
+      CardIdHex : String;
 
     // Faz o start das variáveis
     procedure StartVariaveis;
@@ -71,17 +73,16 @@ TG700NFC = class
     procedure HandleIntentMessage(const Sender: TObject; const M: TMessage);
     ///
 
-    // Mensagens que são apresentadas na tela
-    procedure MensagemEscolhaOpcao;
-
-    // Faz a leitura no Id do Cartão.
-    procedure LeIdCartao;
-
     // Faz a leitura de um setor no cartão
     procedure FazLeituraCartao;
 
+    // Faz a gravação no cartão
+    procedure FazGravacaoCartao;
+
     // Converte Byte em String
     function JavaBytesToNumeric(Bytes: TJavaArray<Byte>): string;
+
+    function JavaBytesToString(Bytes: TJavaArray<Byte>; Separator: string = '-'): string;
 
     // Transforma uma String em JavaBytes
     function EncodeText(const Msg: string): TJavaArray<Byte>;
@@ -92,13 +93,13 @@ TG700NFC = class
     // Cria uma string concatenando juntos todos os valores hexadecimais de cada byte no reverso
     function JavaBytesToStringReverse(Bytes: TJavaArray<Byte>; Separator: string = '-'): string;
 
+
   public
 
-    constructor Create; overload;
-    constructor Create(cLabel : TLabel); overload;
-
-    // Mensagem tela.
-    procedure MensagemAproximeCartao;
+    constructor Create;
+    procedure PowerOff;
+    procedure PowerOn;
+    procedure nfcDisable;
 
     // Faz a leitura do cartão
     procedure setLeituraID;
@@ -106,19 +107,51 @@ TG700NFC = class
     // Faz a leitura dos setores
     procedure setLeituraSetor;
 
+    // Faz a leitura no Id do Cartão.
+    procedure LeIdCartao;
+
+    function retornaIdCartao: string;
+    function retornaIdCartaoHex: string;
+    procedure LimpaIdCartao;
+
 end;
 
 implementation
 
 var
-  iGEDIx : JIGEDI;
-  //GPOS700NFC:TG700NFC;
+  iGEDI : JIGEDI;
+  GPOS700NFC:TG700NFC;
   aTask:ITask;
 
 //****************************************************
 //               Constructor
 //****************************************************
-constructor TG700NFC.Create(cLabel : TLabel);
+
+procedure TG700NFC.PowerOff;
+begin
+  if(Self.iCL <> nil) then
+    Self.iCL.PowerOff;
+
+ if NfcAdapter <> nil then
+   NfcAdapter.disableForegroundDispatch(TAndroidHelper.Activity);
+
+end;
+
+procedure TG700NFC.PowerOn;
+begin
+
+  EnableForegroundDispatch;
+
+end;
+
+
+procedure TG700NFC.nfcDisable;
+begin
+ if NfcAdapter <> nil then
+   NfcAdapter.disableForegroundDispatch(TAndroidHelper.Activity);
+end;
+
+constructor TG700NFC.Create;
 var
     ClassIntent: JIntent;
 begin
@@ -151,19 +184,9 @@ begin
   PendingIntent := TJPendingIntent.JavaClass.getActivity(TAndroidHelper.Context, 0,
     ClassIntent.addFlags(TJIntent.JavaClass.FLAG_ACTIVITY_SINGLE_TOP), 0);
 
-  mensagemTela := cLabel;
 
   StartVariaveis;
 
-  MensagemEscolhaOpcao;
-
-end;
-
-//****************************************************
-
-constructor TG700NFC.Create;
-begin
-//
 end;
 
 //****************************************************
@@ -177,13 +200,6 @@ procedure TG700NFC.StartVariaveis;
 begin
   lReadIdCartao := False;
   lReadCartao   := False;
-end;
-
-//****************************************************
-
-procedure TG700NFC.MensagemEscolhaOpcao;
-begin
-  mensagemTela.Text := 'Escolha uma opção';
 end;
 
 //****************************************************
@@ -205,6 +221,18 @@ begin
 end;
 
 //****************************************************
+function TG700NFC.JavaBytesToString(Bytes: TJavaArray<Byte>; Separator: string = '-'): string;
+var
+  I: Integer;
+begin
+  if Bytes <> nil then
+    for I := 0 to Pred(Bytes.Length) do
+    begin
+      Result := Result + IntToHex(Bytes.Items[I], 2);
+      if (I < Pred(Bytes.Length)) and (Separator.Length > 0) then
+        Result := Result + Separator;
+    end;
+end;
 
 function TG700NFC.EncodeText(const Msg: string): TJavaArray<Byte>;
 var
@@ -348,7 +376,8 @@ begin
         if lReadIdCartao then
           LeIdCartao
         else if lReadCartao then
-          FazLeituraCartao;
+          // FazLeituraCartao;
+          FazGravacaoCartao;
       end
     else
       TDialogService.ShowMessage('Falha ao obter informações do cartão.');
@@ -366,9 +395,8 @@ end;
 procedure TG700NFC.LeIdCartao;
 var
   idByte : TJavaArray<Byte>;
-  loop : Boolean;
 begin
-  loop := True;
+
   try
     try
       Self.iCL := TJGEDI.JavaClass.getInstance.getCL;
@@ -376,7 +404,9 @@ begin
       PollingInfo := iCL.ISO_Polling(12*100);
       idByte := PollingInfo.abUID;
       Self.iCL.PowerOff;
-      TDialogService.ShowMessage('ID: ' + JavaBytesToNumeric(idByte));
+//       TDialogService.ShowMessage('ID: ' + JavaBytesToNumeric(idByte));
+      CardId := JavaBytesToNumeric(idByte);
+      CardIdHex:= JavaBytesToString(IdByte);
 
     except
       on e: exception do begin
@@ -384,8 +414,8 @@ begin
       end;
     end;
   finally
-    MensagemEscolhaOpcao;
-    StartVariaveis;
+    // MensagemEscolhaOpcao;
+    // StartVariaveis;
   end;
 end;
 
@@ -408,7 +438,7 @@ begin
       read := Self.iCL.MF_BlockRead(10);
       // Self.iCL.PowerOff;
 
-      TDialogService.ShowMessage('Mensagem: ' + JavaBytesToStringReverse(read));
+      TDialogService.ShowMessage('Mensagem: ' + DecodeText(read));
 
     except
       on e: exception do begin
@@ -416,7 +446,46 @@ begin
       end;
     end;
   finally
-    MensagemEscolhaOpcao;
+    StartVariaveis;
+  end;
+end;
+
+// ****************************************************
+
+procedure TG700NFC.FazGravacaoCartao;
+var
+  I : Integer;
+  senha : TJavaArray<Byte>;
+  read :  TJavaArray<Byte>;
+begin
+
+  try
+
+    try
+      Self.iCL := TJGEDI.JavaClass.getInstance.getCL;
+
+      Self.iCL.PowerOn;
+      PollingInfo := iCL.ISO_Polling(100);
+
+      senha := EncodeText('0000');
+
+      MF_key := TJGEDI_CL_st_MF_Key.Create;
+      MF_key.abValue := senha;
+
+      // Self.iCL.MF_Authentication(0, MF_key, senha);
+      Self.iCL.MF_SignatureGet(0);
+
+//       read := Self.iCL.MF_BlockRead(10);
+      Self.iCL.PowerOff;
+
+      TDialogService.ShowMessage('Mensagem: ' + DecodeText(read) );
+
+    except
+      on e: exception do begin
+          ShowMessage('Erro=>'+e.Message);
+      end;
+    end;
+  finally
     StartVariaveis;
   end;
 end;
@@ -463,13 +532,6 @@ end;
 
 // ****************************************************
 
-procedure TG700NFC.MensagemAproximeCartao;
-begin
-  mensagemTela.Text := 'Aproxime o cartão';
-end;
-
-//****************************************************
-
 procedure TG700NFC.setLeituraID;
 begin
   lReadIdCartao := True;
@@ -483,6 +545,23 @@ begin
 end;
 
 //****************************************************
+function TG700NFC.retornaIdCartao: string;
+begin
+  result := CardId;
+end;
+//****************************************************
+function TG700NFC.retornaIdCartaoHex: string;
+begin
+  result := CardIdHex;
+end;
+//****************************************************
+procedure TG700NFC.LimpaIdCartao;
+begin
+  CardId:='';
+  CardIdHex:='';
+end;
+
+//****************************************************
 
 // ****************************************************
 //               initialization
@@ -491,9 +570,9 @@ end;
 //****************************************************
 initialization
 
-  //aTask := TTask.Create(procedure ()
-  //  begin
-  //    iGEDIx := TJGEDI.JavaClass.getInstance(TAndroidHelper.Activity);
-  //  end);
-  //aTask.Start;
+  aTask := TTask.Create(procedure ()
+    begin
+      iGEDI := TJGEDI.JavaClass.getInstance(TAndroidHelper.Activity);
+    end);
+  aTask.Start;
 end.

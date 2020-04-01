@@ -86,7 +86,6 @@ uses
   Barcode in 'Barcode.pas' {frmBarCode},
   Androidapi.JNI.Nfc in 'Imports NFC\Androidapi.JNI.Nfc.pas',
   Androidapi.JNI.Nfc.Tech in 'Imports NFC\Androidapi.JNI.Nfc.Tech.pas',
-  G700Interface in 'G700Interface.pas',
   G800Interface in 'G800Interface.pas',
   GEDIPrinter in 'GEDIPrinter.pas',
   Impressao in 'Impressao.pas' {frmImpressao},

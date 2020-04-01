@@ -116,12 +116,12 @@
         <AUP_NFC>true</AUP_NFC>
         <AUP_NFC_TRANSACTION_EVENT>true</AUP_NFC_TRANSACTION_EVENT>
         <BT_BuildType>AppStore</BT_BuildType>
-        <PF_KeyStore>D:\GeovaniJKS\Development_GertecGeovaniNogueira_CustomerAPP.keystore</PF_KeyStore>
-        <PF_KeyStorePass>850B47CC5F81078FCF7DE53AA4417BAEE443084F7EA1EC889F237766D816A8AAA5EF5D187F5CE27A877EC8E20A0067C51479B8658D827E718CE0A0937863861DDCB1F35FD51BFAD5BFD6AF4B070A1D1492013E021DAB096BE3BF16EB4475788F659C9ADD22AB7D7C465EE8719256F3BA965FE9F1DE1CC07FB348C2B7A72256E3E83A0D848D58BFEF2DC3</PF_KeyStorePass>
-        <PF_AliasKey>developmentgertecgeovaninogueira_customerapp</PF_AliasKey>
+        <PF_KeyStore>C:\Marcos\Gertec\JKS\Development_MarcosPSaporetti_CustomerAPP.keystore</PF_KeyStore>
+        <PF_KeyStorePass>850B47CC5F81078FCF7DE53AA4417BAEE4430519A05A97D897C80FA28E363C94DB04A390E34B1C31C1B15774FAD1C339BABA3609043F22FC1657458CE5A722CFC949F31FD555FAFEBFE4AF0D07551D5892013310C35D7270EB236E791211ECEA1B7C645ABEA3837D00E277BB62C4571938D267BC57F19CE0298A27B33AE8F238</PF_KeyStorePass>
+        <PF_AliasKey>developmentmarcospsaporetti_customerapp</PF_AliasKey>
+        <PF_AliasKeyPass>850B47CC5F81078FCF7DE53AA4417BAEE443084FA007979E97FF0FD68E643CD0DB48A3D6E35F1C31C1B0572FFA95C375BABB3651043C2288165745F0E5F4228DC949F31ED506FADDBFCAAF0D071E1D0F92013E44C35D7270EB236E791211ECEA1B7C645ABEA3837D00E277BB62C4571938D267BC57F19CE0298A27B33AE8F238</PF_AliasKeyPass>
         <DCC_Define>__G700__;$(DCC_Define)</DCC_Define>
         <VerInfo_Keys>package=com.embarcadero.$(MSBuildProjectName);label=Gertec One;versionCode=1;versionName=1.0.0;persistent=False;restoreAnyVersion=False;installLocation=auto;largeHeap=False;theme=TitleBar;hardwareAccelerated=true;apiKey=</VerInfo_Keys>
-        <PF_AliasKeyPass>850B47CC5F81078FCF7DE53AA4417BAEE443084F7EA1EC889F237766D816A8AAA5EF5D187F5CE27A877EC8E20A0067C51479B8658D827E718CE0A0937863861DDCB1ADCB0B0C1A83BFFAAF4E071B1D76925B3E4C1DB50939E3AA16B1446B78DC65959AC822F17D534629E8799279F3D7964EE9B2DE4EC00EB316C2BAA74756FFE826534553105FA02DC3</PF_AliasKeyPass>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
@@ -243,7 +243,7 @@
         </DCCReference>
         <DCCReference Include="Imports NFC700\G700NFC.pas"/>
         <DCCReference Include="Imports NFC700\JavaInterfaces.pas"/>
-        <JavaReference Include="libs\gertec_classes_g700.jar">
+        <JavaReference Include="libs\payment-1.14.13.190425.jar">
             <Disabled/>
         </JavaReference>
         <BuildConfiguration Include="Release">
@@ -296,26 +296,14 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\lib\android\release\mips\libnative-activity.so" Configuration="Debug" Class="AndroidLibnativeMipsFile">
-                    <Platform Name="Android">
-                        <RemoteName>libBarCode.so</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
-                    <Platform Name="iOSSimulator">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_LauncherIcon_72x72.png" Configuration="Debug" Class="Android_LauncherIcon72">
                     <Platform Name="Android">
                         <RemoteName>ic_launcher.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_SplashImage_640x480.png" Configuration="Debug" Class="Android_SplashImage640">
-                    <Platform Name="Android">
-                        <RemoteName>splash_image.png</RemoteName>
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
+                    <Platform Name="iOSSimulator">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -325,8 +313,15 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Android\Debug\AndroidManifest.xml" Configuration="Debug" Class="ProjectAndroidManifest">
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_SplashImage_960x720.png" Configuration="Debug" Class="Android_SplashImage960">
                     <Platform Name="Android">
+                        <RemoteName>splash_image.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\lib\android\release\mips\libnative-activity.so" Configuration="Debug" Class="AndroidLibnativeMipsFile">
+                    <Platform Name="Android">
+                        <RemoteName>libBarCode.so</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -336,9 +331,14 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_SplashImage_960x720.png" Configuration="Debug" Class="Android_SplashImage960">
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Android\FM_SplashImage_640x480.png" Configuration="Debug" Class="Android_SplashImage640">
                     <Platform Name="Android">
                         <RemoteName>splash_image.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Android\Debug\AndroidManifest.xml" Configuration="Debug" Class="ProjectAndroidManifest">
+                    <Platform Name="Android">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -890,5 +890,6 @@
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
     <ProjectExtensions/>
     <Import Project="$(MSBuildProjectName).deployproj" Condition="Exists('$(MSBuildProjectName).deployproj')"/>
+    <ProjectExtensions/>
     <ProjectExtensions/>
 </Project>

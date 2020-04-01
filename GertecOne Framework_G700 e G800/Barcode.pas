@@ -35,6 +35,9 @@ uses
   ZXing.ScanManager,
   FMX.Barcode.DROID, FMX.Objects, FMX.Edit;
 
+const
+  SECOND = 1/86400;
+
 type
 
 TBarCodes = (EAN8, EAN13, QRCODE, AUTO);
@@ -96,6 +99,11 @@ implementation
 uses System.Threading;
 
 var lFlash : Boolean;
+    iCount:integer;
+    UltimoCodigo:string;
+    UltimaHora:TDateTime;
+
+
 
 function TfrmBarCode.AppEvent(AAppEvent: TApplicationEvent;
   AContext: TObject): Boolean;
@@ -119,10 +127,14 @@ begin
 
   fScanManager := TScanManager.Create(tipo,nil);
 
-  Camera.Quality := FMX.Media.TVideoCaptureQuality.MediumQuality;
   Camera.Active := False;
   Camera.Kind := FMX.Media.TCameraKind.BackCamera;
   Camera.FocusMode := FMX.Media.TFocusMode.ContinuousAutoFocus;
+  Camera.Quality := FMX.Media.TVideoCaptureQuality.HighQuality;
+
+  //Ajuste empírico - TCameraComponent quality change when reactivated!
+  Camera.FocusMode := FMX.Media.TFocusMode.ContinuousAutoFocus;
+  Camera.Quality := FMX.Media.TVideoCaptureQuality.MediumQuality;
   Camera.Active := True;
 
 end;
@@ -200,6 +212,10 @@ var
 begin
 
   lFlash := False;
+  iCount:=1;
+
+  UltimoCodigo:='';
+  UltimaHora:=time;
 
   if TPlatformServices.Current.SupportsPlatformService
      ( IFMXApplicationEventService, IInterface(AppEventSvc)) then
@@ -264,11 +280,20 @@ begin
 
         TThread.Synchronize(nil,
           procedure
+          var
+            Codigo:string;
           begin
             if (ReadResult <> nil) then
             begin
-              lblResultadoLeitura.Text := ReadResult.text;
-              FinalizaLeitura;
+            //So registra mesmo codigo depois de 3 segundos
+              if((Codigo<>UltimoCodigo)or(abs(time-UltimaHora)>3*SECOND))then begin
+                UltimoCodigo := Codigo;
+                UltimaHora:=Time;
+                lblResultadoLeitura.Text := '('+inttostr(iCount)+') '+ReadResult.text;
+                inc(iCount);
+                Toast('Leitura com sucesso.');
+                //FinalizaLeitura;
+              end;
             end;
           end);
       finally

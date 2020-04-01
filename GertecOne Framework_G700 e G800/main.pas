@@ -21,6 +21,7 @@ uses
   {$IFDEF __G800__}
   uNFC
   {$ELSE}
+  G700NFC,
   uNFCid
   {$ENDIF}
 
@@ -47,6 +48,7 @@ type
     procedure cmdNFCClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure cmdNFCIdClick(Sender: TObject);
+    procedure DesligaNFC;
   private
     { Private declarations }
   public
@@ -62,14 +64,23 @@ implementation
 
 procedure TfrmMain.cmdCodigoBarrasClick(Sender: TObject);
 begin
+DesligaNFC;
 frmBarCode.Show;
 end;
 
+procedure TfrmMain.DesligaNFC;
+begin
+{$IFNDEF __G800__}
+if(GertecNFC <> nil)then
+  GertecNFC.PowerOff;
+{$ENDIF}
+end;
 
 
 procedure TfrmMain.cmdImpressaoClick(Sender: TObject);
 begin
 //ShowMessage('Impressao');
+DesligaNFC;
 frmImpressao.Show;
 end;
 
@@ -99,7 +110,7 @@ begin
     cmdNFC.Visible := True;
   end else begin//'GPOS700'
     //ShowMessage('NOT Smart G800');
-    cmdNFC.Visible := True;
+    cmdNFC.Visible := false;
     cmdNFCId.Position.Y := cmdNFC.Position.Y;
   end;
   cmdNFCId.Visible := not cmdNFC.Visible;

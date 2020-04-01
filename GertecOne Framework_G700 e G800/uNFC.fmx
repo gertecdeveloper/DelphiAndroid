@@ -680,8 +680,8 @@ object frmNFC: TfrmNFC
       E8E3455220A2B061EE8BE39736BB9B7228FE1416AFC3F7730BA8CC965B29B4CA
       943A2F930DFE9B02E23E2F3787FCEA840EEDDA2033234C797209B9C149671B28
       7547A172D0D69400FE1F105EFFB435AC04A20000000049454E44AE426082}
-    Viewport.Width = 353.000000000000000000
-    Viewport.Height = 140.000000000000000000
+    Viewport.Width = 349.000000000000000000
+    Viewport.Height = 136.000000000000000000
   end
   object btnGravarMensagem: TButton
     Position.X = 56.000000000000000000
@@ -742,5 +742,11 @@ object frmNFC: TfrmNFC
     CheckSpelling = True
     ParentShowHint = False
     ShowHint = True
+  end
+  object timerNFC: TTimer
+    Enabled = False
+    OnTimer = timerNFCTimer
+    Left = 32
+    Top = 320
   end
 end

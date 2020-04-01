@@ -1,5 +1,7 @@
 unit NFCHelper;
-
+// Nesta implementação
+// Registro 0 => Mensagem
+// Registro 1 => URL
 interface
 
 uses
@@ -31,6 +33,8 @@ uses
 
 type
 
+NFC_WRITE_STATUS = (NFC_WRITE_IDLE, NFC_WRITE_PENDING, NFC_WRITE_OK, NFC_WRITE_FAIL);
+
 TNFCHelper = class
 
   private
@@ -40,11 +44,6 @@ TNFCHelper = class
       lReadUrlCard : Boolean;
       lGravarMensagem : Boolean;
       lGravarUrl : Boolean;
-      txtMensagem: string;
-      txtUrl: string;
-      txtMensagemTela : TLabel;
-      txtMensagemGravada : TMemo;
-      txtUrlGravada : TEdit;
 
       AppEvents: IFMXApplicationEventService;
       NfcAdapter: JNfcAdapter;
@@ -96,17 +95,16 @@ TNFCHelper = class
 
     function DecodeURI(RecordBytes: TJavaArray<Byte>): string;
 
-    // Alterar a mensagem do LABEL na tela
-    procedure MensagemEscolhaFuncao;
-    procedure MensagemAproximeCartao;
-    procedure MensagemURL;
-    procedure MensagemGravada;
-
   public
 
-    constructor Create( txtMensagemTela: TLabel;
-                        txtMensagemGravada: TMemo;
-                        txtUrlGravada: TEdit);
+    NFCMensagem: string;
+    NFCUrl: string;
+    CardId: string;
+    CardIdHex: string;
+    NFCWriteStatus : NFC_WRITE_STATUS;
+
+
+    constructor Create;
 
     procedure setLeituraID;
 
@@ -114,10 +112,13 @@ TNFCHelper = class
 
     procedure setGravaURL;
 
-    procedure setGravaMensagem;
+    procedure setGravaMensagemURL(const mensagem:string; const URL:string);
     procedure setMensagemURL(const mensagem:string; const URL:string);
 
     procedure setLeUrlCartao;
+
+    procedure ClearData;
+
 
 end;
 
@@ -129,9 +130,7 @@ uses
   System.Permissions,
   FMX.DialogService;
 
-constructor TNFCHelper.Create(txtMensagemTela: TLabel;
-                              txtMensagemGravada: TMemo;
-                              txtUrlGravada: TEdit);
+constructor TNFCHelper.Create;
 var
     ClassIntent: JIntent;
 begin
@@ -164,12 +163,18 @@ begin
   PendingIntent := TJPendingIntent.JavaClass.getActivity(TAndroidHelper.Context, 0,
     ClassIntent.addFlags(TJIntent.JavaClass.FLAG_ACTIVITY_SINGLE_TOP), 0);
 
-  Self.txtMensagemTela := txtMensagemTela;
-  Self.txtMensagemGravada := txtMensagemGravada;
-  Self.txtUrlGravada := txtUrlGravada;
+  ClearData;
 
-  MensagemEscolhaFuncao;
+end;
 
+procedure TNFCHelper.ClearData;
+begin
+
+  NFCMensagem := '';
+  NFCUrl := '';
+  CardId := '';
+  CardIdHex := '';
+  NFCWriteStatus := NFC_WRITE_IDLE;
 end;
 
 {$REGION 'JNI substitute for calling NfcAdapter.enableForegroundDispatch'}
@@ -290,8 +295,8 @@ begin
         else if lGravarMensagem then
           GravarMensagem(TJTag.Wrap(TagParcel))
 
-        else
-          MensagemEscolhaFuncao
+        //else
+        //  MensagemEscolhaFuncao
 
       end
 
@@ -422,13 +427,13 @@ begin
 
           if I = 0 then
             begin
-              txtMensagem := DecodeText(NDefMsg.getRecords[I].getPayload);
+              NFCMensagem := DecodeText(NDefMsg.getRecords[I].getPayload);
               mensagem := mensagem + DecodeText(NDefMsg.getRecords[I].getPayload);
             end;
 
-          if I > 0 then
+          if I > 0  then // Favor implementar as outras opções se necessario
             begin
-              txtUrl := DecodeURI(NDefMsg.getRecords[1].getPayload);
+              NFCUrl := DecodeURI(NDefMsg.getRecords[1].getPayload);
               mensagem := mensagem + #13#10+ #13#10 + 'URL'+ #13#10 + DecodeURI(NDefMsg.getRecords[1].getPayload);
             end;
 
@@ -463,8 +468,8 @@ begin
         begin
           // Faça uma lista de 2 registros NDEF, um com algum texto e outro com um URL
           NDefRecords := TJavaObjectArray<JNdefRecord>.Create(2);
-          NDefRecords.Items[0] := EncodeText(Self.txtMensagem);
-          NDefRecords.Items[1] := TJNdefRecord.JavaClass.createUri(StringToJString(Self.txtUrl));
+          NDefRecords.Items[0] := EncodeText(Self.NFCMensagem);
+          NDefRecords.Items[1] := TJNdefRecord.JavaClass.createUri(StringToJString(Self.NFCUrl));
           NDefMsg := TJNdefMessage.JavaClass.init(NDefRecords);
           NDef.writeNdefMessage(NDefMsg);
           NDef.close;
@@ -488,9 +493,11 @@ begin
   try
     try
       IdArray := TJTag.Wrap(TagParcel).getId;
-      if IdArray.Length > 0  then
-          TDialogService.ShowMessage('ID do cartão: ' + JavaBytesToString(IdArray)+#13#10+'ID do cartão: ' + JavaBytesToNumeric(IdArray))
-      else
+      if IdArray.Length > 0  then begin
+          CardId := JavaBytesToNumeric(IdArray);
+          CardIdHex:= JavaBytesToString(IdArray);
+          //TDialogService.ShowMessage('ID do cartão: ' + JavaBytesToString(IdArray)+#13#10+'ID do cartão: ' + JavaBytesToNumeric(IdArray))
+      end else
         TDialogService.ShowMessage('Não foi possível ler o ID do cartão.');
     except
       on e: exception do begin
@@ -514,9 +521,9 @@ begin
 
       if mensagem.Length > 0  then
         begin
-          MensagemGravada;
-          MensagemURL;
-          TDialogService.ShowMessage('Mensagem' + #13#10 + mensagem );
+          //MensagemGravada;
+          //MensagemURL;
+          //TDialogService.ShowMessage('Mensagem' + #13#10 + mensagem );
         end
       else
         TDialogService.ShowMessage('Não foi possível ler a mensagem gravada.');
@@ -544,9 +551,11 @@ begin
       lResult := GravaCartao(Tag);
 
       if lResult then
-        TDialogService.ShowMessage('Dados gravados com sucesso.')
+        //TDialogService.ShowMessage('Dados gravados com sucesso.')
+        NFCWriteStatus := NFC_WRITE_OK
       else
-        TDialogService.ShowMessage('Erro ao gravar mensagem no cartão.');
+        //TDialogService.ShowMessage('Erro ao gravar mensagem no cartão.');
+        NFCWriteStatus := NFC_WRITE_FAIL;
 
     except
 
@@ -572,65 +581,44 @@ begin
   lGravarMensagem := False;
   lGravarUrl := False;
 
-  MensagemEscolhaFuncao;
-
 end;
 
 procedure TNFCHelper.setLeituraID;
 begin
   lReadId := True;
-  MensagemAproximeCartao;
 end;
 
 procedure TNFCHelper.setLeituraMensagem;
 begin
   lReadMensagens := True;
-  MensagemAproximeCartao;
 end;
 
 procedure TNFCHelper.setGravaURL;
 begin
   lGravarUrl := True;
-  MensagemAproximeCartao;
+  NFCWriteStatus := NFC_WRITE_PENDING;
 end;
 
-procedure TNFCHelper.setGravaMensagem;
-begin
-  lGravarMensagem := True;
-  MensagemAproximeCartao;
-end;
 
 procedure TNFCHelper.setMensagemURL(const mensagem:string; const URL:string);
 begin
-  Self.txtMensagem := mensagem;
-  Self.txtUrl := URL;
+  Self.NFCMensagem := mensagem;
+  Self.NFCUrl := URL;
 end;
+
+procedure TNFCHelper.setGravaMensagemURL(const mensagem:string; const URL:string);
+begin
+
+  setMensagemURL(mensagem,URL);
+
+  lGravarMensagem := True;
+  NFCWriteStatus := NFC_WRITE_PENDING;
+end;
+
 
 procedure TNFCHelper.setLeUrlCartao;
 begin
   lReadUrlCard := True;
-  MensagemAproximeCartao;
-end;
-
-
-procedure TNFCHelper.MensagemEscolhaFuncao;
-begin
-  txtMensagemTela.Text := 'Escolha uma opção.';
-end;
-
-procedure TNFCHelper.MensagemAproximeCartao;
-begin
-    txtMensagemTela.Text := 'Aproxime o cartão.';
-end;
-
-procedure TNFCHelper.MensagemURL;
-begin
-    txtUrlGravada.Text := Self.txtUrl;
-end;
-
-procedure TNFCHelper.MensagemGravada;
-begin
-    txtMensagemGravada.Text := Self.txtMensagem;
 end;
 
 function TNFCHelper.DecodeURI(RecordBytes: TJavaArray<Byte>): string;
