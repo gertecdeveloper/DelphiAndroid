@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2019/07/31 14:01:31.000.937,=D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2019/07/31 14:02:00.000.278,D:\Documentos\Embarcadero\Studio\Projects\Unit1.pas=D:\Projetos\Delphi\Berlin\BarCodeUnificado\Unit1.pas</Transaction>
+    <Transaction>2019/07/31 14:02:00.000.278,D:\Documentos\Embarcadero\Studio\Projects\Unit1.fmx=D:\Projetos\Delphi\Berlin\BarCodeUnificado\Unit1.fmx</Transaction>
+    <Transaction>2019/07/31 14:02:04.000.392,D:\Documentos\Embarcadero\Studio\Projects\Project1.dproj=D:\Projetos\Delphi\Berlin\BarCodeUnificado\BarCode.dproj</Transaction>
+    <Transaction>2019/08/05 11:43:03.000.409,D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\GertecOne Framework\Delphi\BarCodeUnificado\BarCode.dproj=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\GertecOne Framework\Delphi\BarCodeUnificado\GertecOne.dproj</Transaction>
+    <Transaction>2019/08/05 11:54:52.000.434,=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\GertecOne Framework\Delphi\BarCodeUnificado\Barcode.pas</Transaction>
+    <Transaction>2019/08/05 12:30:21.000.083,=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\uNFC.pas</Transaction>
+    <Transaction>2019/08/05 12:30:33.000.588,=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\Imports NFC\Androidapi.JNI.Nfc.Tech.pas</Transaction>
+    <Transaction>2019/08/05 12:30:33.000.606,=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\Imports NFC\NFCHelper.pas</Transaction>
+    <Transaction>2019/08/05 12:30:33.000.571,=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\Imports NFC\Androidapi.JNI.Nfc.pas</Transaction>
+    <Transaction>2019/08/05 13:50:50.000.073,=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\libs\gertec_classes_g800.jar</Transaction>
+    <Transaction>2019/08/05 13:50:50.000.086,=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\libs\zxing-2.1.jar</Transaction>
+    <Transaction>2019/08/05 13:51:08.000.457,=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\Impressao.pas</Transaction>
+    <Transaction>2019/08/05 13:51:29.000.176,=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\G700Interface.pas</Transaction>
+    <Transaction>2019/08/05 13:51:29.000.207,=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\G800Interface.pas</Transaction>
+    <Transaction>2019/08/05 13:51:29.000.230,=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\GEDIPrinter.pas</Transaction>
+    <Transaction>2019/08/05 13:52:57.000.311,D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\Imports NFC\NFCHelper.pas=</Transaction>
+    <Transaction>2019/08/05 13:52:57.000.298,D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\uNFC.pas=</Transaction>
+    <Transaction>2019/08/05 14:00:06.000.630,=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\uNFC.pas</Transaction>
+    <Transaction>2019/08/05 14:00:14.000.492,=D:\Marcos\Gertec\2019-08-05-Curitiba e Porto Alegre\Delphi\BarCodeUnificado\Imports NFC\NFCHelper.pas</Transaction>
+    <Transaction>2019/10/01 10:39:58.000.650,D:\Marcos\Gertec\2019-10-RC01\Delphi\Delphi - GertecOne Framework_G700 e G800\G700Interface.pas=</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile Android="5401031901000522"/>
+	</ActiveMobileDevice>
+	<BT_BuildType>Debug</BT_BuildType>
+</BorlandProject>
