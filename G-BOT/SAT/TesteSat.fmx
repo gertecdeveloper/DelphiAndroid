@@ -1,0 +1,130 @@
+object frmTesteSat: TfrmTesteSat
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 534
+  ClientWidth = 854
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnActivate = FormActivate
+  DesignerMasterStyle = 3
+  object Layout1: TLayout
+    Align = Left
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 40.000000000000000000
+    Position.X = 10.000000000000000000
+    Position.Y = 40.000000000000000000
+    Size.Width = 367.000000000000000000
+    Size.Height = 494.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object buttonCancelaVenda: TButton
+      StyledSettings = [Family, FontColor]
+      Position.Y = 272.000000000000000000
+      Size.Width = 369.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'CANCELAR VENDA'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      OnClick = buttonCancelaVendaClick
+    end
+    object buttonConsultaSat: TButton
+      StyledSettings = [Family, FontColor]
+      Position.Y = 48.000000000000000000
+      Size.Width = 369.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'CONSULTAR SAT'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      OnClick = buttonConsultaSatClick
+    end
+    object buttonConsultaSessao: TButton
+      StyledSettings = [Family, FontColor]
+      Position.Y = 328.000000000000000000
+      Size.Width = 369.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'CONSULTAR SESS'#195'O'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      OnClick = buttonConsultaSessaoClick
+    end
+    object buttonDadosVenda: TButton
+      StyledSettings = [Family, FontColor]
+      Position.Y = 216.000000000000000000
+      Size.Width = 369.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      Text = 'ENVIAR DADOS DE VENDA'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      OnClick = buttonDadosVendaClick
+    end
+    object buttonFiaAFim: TButton
+      StyledSettings = [Family, FontColor]
+      Position.Y = 160.000000000000000000
+      Size.Width = 369.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      Text = 'TESTE FIM A FIM'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      OnClick = buttonFiaAFimClick
+    end
+    object buttonStatusOperacional: TButton
+      StyledSettings = [Family, FontColor]
+      Position.Y = 104.000000000000000000
+      Size.Width = 369.000000000000000000
+      Size.Height = 49.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      Text = 'STATUS OPERACIONAL'
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      OnClick = buttonStatusOperacionalClick
+    end
+    object edtCodeAtivacao: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 6
+      Position.X = 192.000000000000000000
+      Position.Y = 2.000000000000000000
+      Size.Width = 177.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      OnTyping = edtCodeAtivacaoTyping
+    end
+    object Label1: TLabel
+      StyledSettings = [Family, FontColor]
+      Size.Width = 185.000000000000000000
+      Size.Height = 33.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 16.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      Text = 'C'#243'digo de Ativa'#231#227'o SAT:'
+      TabOrder = 7
+    end
+  end
+  inline FrmResposta: TFrmResposta
+    Align = Right
+    Position.X = 404.000000000000000000
+    Size.Width = 450.000000000000000000
+    Size.Height = 534.000000000000000000
+    Size.PlatformDefault = False
+    inherited meResposta: TMemo
+      Size.Height = 465.000000000000000000
+      Viewport.Width = 422.000000000000000000
+      Viewport.Height = 457.000000000000000000
+    end
+    inherited Label1: TLabel
+      Text = 'Retorno SAT'
+    end
+  end
+end

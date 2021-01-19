@@ -1,0 +1,103 @@
+object frmCodigoDeBarras: TfrmCodigoDeBarras
+  Left = 0
+  Top = 0
+  Caption = 'nfc'
+  ClientHeight = 534
+  ClientWidth = 854
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnDeactivate = FormDeactivate
+  DesignerMasterStyle = 0
+  object Label1: TLabel
+    Align = Top
+    StyledSettings = [Family]
+    Size.Width = 854.000000000000000000
+    Size.Height = 137.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 28.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    TextSettings.FontColor = claGray
+    TextSettings.HorzAlign = Center
+    Text = 'Leitura C'#243'digo de Barras'
+    TabOrder = 1
+  end
+  object btnIniciarServico: TButton
+    StyledSettings = [Family, FontColor]
+    Position.X = 24.000000000000000000
+    Position.Y = 120.000000000000000000
+    Size.Width = 297.000000000000000000
+    Size.Height = 41.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 5
+    Text = 'INICIAR SERVI'#199'O'
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    OnClick = btnIniciarServicoClick
+  end
+  object btnPararServico: TButton
+    StyledSettings = [Family, FontColor]
+    Position.X = 24.000000000000000000
+    Position.Y = 176.000000000000000000
+    Size.Width = 297.000000000000000000
+    Size.Height = 41.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Text = 'PARAR SERVI'#199'O'
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    OnClick = btnPararServicoClick
+  end
+  object btnLigarLed: TButton
+    StyledSettings = [Family, FontColor]
+    Position.X = 24.000000000000000000
+    Position.Y = 232.000000000000000000
+    Size.Width = 297.000000000000000000
+    Size.Height = 41.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'LIGAR LED'
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    OnClick = btnLigarLedClick
+  end
+  object btnDesligarLed: TButton
+    StyledSettings = [Family, FontColor]
+    Position.X = 24.000000000000000000
+    Position.Y = 288.000000000000000000
+    Size.Width = 297.000000000000000000
+    Size.Height = 41.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'DESLIGAR LED'
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    OnClick = btnDesligarLedClick
+  end
+  object meResposta: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Position.X = 360.000000000000000000
+    Position.Y = 120.000000000000000000
+    Size.Width = 473.000000000000000000
+    Size.Height = 369.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+    Viewport.Width = 469.000000000000000000
+    Viewport.Height = 365.000000000000000000
+  end
+  object MediaPlayer1: TMediaPlayer
+    Left = 784
+    Top = 24
+  end
+  object lbStatus: TLabel
+    Position.X = 24.000000000000000000
+    Position.Y = 376.000000000000000000
+    Size.Width = 169.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Off'
+    TabOrder = 8
+  end
+end

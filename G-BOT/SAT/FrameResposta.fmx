@@ -1,0 +1,32 @@
+object FrmResposta: TFrmResposta
+  Size.Width = 450.000000000000000000
+  Size.Height = 500.000000000000000000
+  Size.PlatformDefault = False
+  object meResposta: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Client
+    Margins.Left = 10.000000000000000000
+    Margins.Top = 10.000000000000000000
+    Margins.Right = 10.000000000000000000
+    Margins.Bottom = 10.000000000000000000
+    Size.Width = 430.000000000000000000
+    Size.Height = 431.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Viewport.Width = 426.000000000000000000
+    Viewport.Height = 427.000000000000000000
+  end
+  object Label1: TLabel
+    Align = Top
+    StyledSettings = [Family, Style]
+    Size.Width = 450.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 24.000000000000000000
+    TextSettings.FontColor = claGray
+    TextSettings.HorzAlign = Center
+    Text = 'Resposta SAT'
+    TabOrder = 1
+  end
+end

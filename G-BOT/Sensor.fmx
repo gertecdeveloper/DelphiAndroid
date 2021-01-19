@@ -1,0 +1,59 @@
+object frmSensor: TfrmSensor
+  Left = 0
+  Top = 0
+  Caption = 'Sensor'
+  ClientHeight = 534
+  ClientWidth = 854
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnActivate = FormActivate
+  OnKeyDown = FormKeyDown
+  DesignerMasterStyle = 0
+  object Label1: TLabel
+    Align = Top
+    StyledSettings = [Family]
+    Size.Width = 854.000000000000000000
+    Size.Height = 97.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 34.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    TextSettings.FontColor = claGray
+    TextSettings.HorzAlign = Center
+    Text = 'Sensor de Presen'#231'a'
+    TabOrder = 0
+  end
+  object btnIniciarServico: TButton
+    Position.X = 40.000000000000000000
+    Position.Y = 120.000000000000000000
+    Size.Width = 209.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'INICIAR SERVI'#199'O'
+    OnClick = btnIniciarServicoClick
+  end
+  object btnPararServico: TButton
+    Position.X = 40.000000000000000000
+    Position.Y = 216.000000000000000000
+    Size.Width = 209.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'PARAR SERVI'#199'O'
+    OnClick = btnPararServicoClick
+  end
+  object meResposta: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    ReadOnly = True
+    Position.X = 352.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 465.000000000000000000
+    Size.Height = 393.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Viewport.Width = 461.000000000000000000
+    Viewport.Height = 389.000000000000000000
+  end
+end

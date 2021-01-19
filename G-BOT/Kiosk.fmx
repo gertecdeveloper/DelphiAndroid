@@ -1,0 +1,51 @@
+object frmKiosk: TfrmKiosk
+  Left = 0
+  Top = 0
+  Caption = 'Kiosk'
+  ClientHeight = 534
+  ClientWidth = 854
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object btnKioskStart: TButton
+    StyledSettings = [Family, Size]
+    Position.X = 8.000000000000000000
+    Position.Y = 232.000000000000000000
+    Size.Width = 393.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'START KIOSK MODE'
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    TextSettings.FontColor = claGray
+    OnClick = btnKioskStartClick
+  end
+  object btnKioskStop: TButton
+    StyledSettings = [Family, Size]
+    Position.X = 424.000000000000000000
+    Position.Y = 232.000000000000000000
+    Size.Width = 417.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Text = 'STOP KIOSK MODE'
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    TextSettings.FontColor = claGray
+    OnClick = btnKioskStopClick
+  end
+  object lbKioskMode: TLabel
+    StyledSettings = []
+    Position.Y = 120.000000000000000000
+    Size.Width = 854.000000000000000000
+    Size.Height = 81.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 32.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    TextSettings.FontColor = claGray
+    TextSettings.HorzAlign = Center
+    Text = 'Modo Kiosk desativado'
+    TabOrder = 2
+  end
+end

@@ -1,0 +1,101 @@
+object frmFala: TfrmFala
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 534
+  ClientWidth = 854
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnActivate = FormActivate
+  DesignerMasterStyle = 0
+  object Label1: TLabel
+    Align = Top
+    StyledSettings = [Family]
+    Size.Width = 854.000000000000000000
+    Size.Height = 129.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 34.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    TextSettings.FontColor = claGray
+    TextSettings.HorzAlign = Center
+    Text = 'Fala G-BOT'
+    TabOrder = 0
+  end
+  object btnFrase1: TButton
+    StyledSettings = [Family, FontColor]
+    Position.X = 32.000000000000000000
+    Position.Y = 168.000000000000000000
+    Size.Width = 361.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    Text = 'FRASE 1'
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    OnClick = btnFrase1Click
+  end
+  object btnFrase2: TButton
+    StyledSettings = [Family, FontColor]
+    Position.X = 32.000000000000000000
+    Position.Y = 232.000000000000000000
+    Size.Width = 361.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'FRASE 2'
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    OnClick = btnFrase2Click
+  end
+  object btnFrase3: TButton
+    StyledSettings = [Family, FontColor]
+    Position.X = 32.000000000000000000
+    Position.Y = 296.000000000000000000
+    Size.Width = 361.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'FRASE 3'
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    OnClick = btnFrase3Click
+  end
+  object btnFraseDigitada: TButton
+    StyledSettings = [Family, FontColor]
+    Position.X = 32.000000000000000000
+    Position.Y = 360.000000000000000000
+    Size.Width = 361.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'FRASE DIGITADA'
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    OnClick = btnFraseDigitadaClick
+  end
+  object Label2: TLabel
+    StyledSettings = [Family]
+    Position.X = 440.000000000000000000
+    Position.Y = 96.000000000000000000
+    Size.Width = 353.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 22.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    TextSettings.FontColor = claGray
+    TextSettings.HorzAlign = Center
+    Text = 'Digite sua frase aqui'
+    TabOrder = 5
+  end
+  object edtFrase: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 6
+    Position.X = 440.000000000000000000
+    Position.Y = 152.000000000000000000
+    Size.Width = 385.000000000000000000
+    Size.Height = 65.000000000000000000
+    Size.PlatformDefault = False
+    TextPrompt = 'Digite sua frase '
+  end
+end

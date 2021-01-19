@@ -1,0 +1,44 @@
+inherited frmTEF_LgXhdpiPh: TfrmTEF_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 3
+  inherited cmdCancelarTransacao: TButton
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited cmdEnviarTransacao: TButton
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited cmdFuncoes: TButton
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited cmdReimpressao: TButton
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited grpFormaPagamento: TGroupBox
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited grpParcelamento: TGroupBox
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited lblIP: TLabel
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited lblParcelas: TLabel
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited lblTitulo: TLabel
+    Position.X = 8.000000000000000000
+    Position.Y = 8.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited lblValor: TLabel
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+  inherited meResposta: TMemo
+    Viewport.Width = 401.000000000000000000
+    Viewport.Height = 465.000000000000000000
+  end
+  inherited Label1: TLabel
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+  end
+end
