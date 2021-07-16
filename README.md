@@ -1,26 +1,18 @@
 [![](https://pbs.twimg.com/media/EKzBdw7WwAQrq8J.png)](https://www.gertec.com.br/)
 
-# Prezados e parceiros e escovadores de Bits!! 
-
-Obrigado por acessarem nosso github!!
-
-Nestes code samples, você encontra exemplos de integração com os terminais Gertec GPOS700 e TSG800 em diversas linguagens tais como Java, Delphi, Flutter, React-Native, Ionic, Xamarin-Android e Xamarin-Forms!
-
-Seja capaz de executar em curto período de tempo as diversas funcionalidades para seu aplicativo:
-
   - Impressão 
   - Código de Barras
   - Leitura de Cartão NFC
   - Integração com TEF Sw Express e Ger7
 
 # Gertec Developer
-Quero fazer parte da Comunidade e receber informações. 
+Quero fazer parte da Comunidade e receber informações.
 Está bem fácil.
  
 [Cadastre-se aqui]( https://www.gertec.com.br/login/software-house/cadastro/)
 
 # GPOS700, TSG800, MP5
-GPOS700 é o POS com PCI e que permite você desenvolver um aplicativo Android nele e colocar a solução de cartão de credito também dentro dele. 
+GPOS700 é o POS com PCI e que permite você desenvolver um aplicativo Android nele e colocar a solução de cartão de credito também dentro dele.
 
 O TSG800 é um terminal sem pagamento, um Smart Printer, mas você pode usar uma “moderninha” e parear a “moderninha” com ele por Bluetooth e fazer o pagamento.
 
@@ -35,19 +27,19 @@ Em nosso site você pode ter acesso a mais informações, seguem links:
 **MP5** https://www.gertec.com.br/produtos/mp5/
 
 # PILOTO MP5
-Desejo participar o Piloto com o Pinpad Bluetooth MP5, como fazer? Super simples, me envie um e-mail com seu nome e telefone para **Geovani.nogueira@gertec.com.br** com o título **“Piloto MP5”**.
+Desejo participar o Piloto com o Pinpad Bluetooth MP5, como fazer? Super simples, me envie um e-mail com seu nome e telefone para **dev@gertec.com.br** com o título **“Piloto MP5”**.
 
 Assim que tivemos disponível peças para desenvolvedor a preço reduzido e funcionando com a SwExpress e Multi-Chave, vamos te enviar a informação. 
  
 # Desejo adquirir o equipamento para meu desenvolvimento
 A MP5 (Pinpad Bluetooth) ainda não está disponível pra desenvolvedor, em breve estará, sem dúvida e 100% integrado com a SwExpress.
 
-O GPOS700 para Desenvolvedor o valor e de R$1.099,00 em até 5x no cartão ou 28Dias no boleto.
+O GPOS700 para Desenvolvedor o valor e de R$1.099,00 em até 12x no cartão ou 28 dias no boleto.
  
 Como adquirir? 
   1. Preencha esta planilha em anexo com os dados de sua empresa 
-  2. pode me enviar Geovani.nogueira@gertec.com.br
-
+  2. pode me enviar dev@gertec.com.br
+  
 O TSG800 você pode adquirir direto de nosso e-commerce com uma promoção para Desenvolvedor
 
 [Click aqui adquirir um TSG 800](
@@ -85,7 +77,4 @@ https://integracao.ger7.com.br/
 
 Fiquem com meu contato, estou a inteira disposição
 
-#### **Geovani Nogueira**
-011 9 9239 2110 
-
-geovani.nogueira@gertec.com.br.
+#### **dev@gertec.com.br**
